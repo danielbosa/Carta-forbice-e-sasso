@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Sans";
+    background-color: black;
+    color: white;
+}
+
+h1{
+    text-align: center;
+    font-size: 3.3rem;
+    border-bottom: 2px solid gray;
+    width: 100%;
+    position: fixed;
+    background-color: black;
+    margin-top: 0;
+    padding: 10px 0;
+}
