@@ -5,18 +5,43 @@
 }
 
 body{
-    font-family: "Sans";
+    font-family: "Sans" !important;
     background-color: black;
     color: white;
+    font-size: 16px;
+}
+
+header{
+    width: 100%;
+    position: fixed;
+    background-color: black;
+    margin-top: 0;
+    padding: 20px 0;
+    border-bottom: 2px solid gray;
 }
 
 h1{
     text-align: center;
     font-size: 3.3rem;
-    border-bottom: 2px solid gray;
-    width: 100%;
-    position: fixed;
-    background-color: black;
-    margin-top: 0;
-    padding: 10px 0;
+}
+
+main{
+    padding: 150px 50px 0 50px;
+}
+
+h2,
+h3{
+    text-align: center;
+}
+
+.play-button{
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 0.3rem 1rem;
+}
+
+.play-button:hover{
+    cursor: pointer;
+    background-color: white;
+    color: black;
 }
