@@ -5,7 +5,7 @@
 }
 
 body{
-    font-family: "Sans" !important;
+    /* font-family: "Sans" !important; */
     background-color: black;
     color: white;
     font-size: 16px;
@@ -14,34 +14,69 @@ body{
 header{
     width: 100%;
     position: fixed;
+    z-index: 1;
     background-color: black;
     margin-top: 0;
-    padding: 20px 0;
+    padding: 10px 0;
     border-bottom: 2px solid gray;
 }
 
 h1{
     text-align: center;
     font-size: 3.3rem;
+    font-weight: bold;
 }
 
 main{
-    padding: 150px 50px 0 50px;
+    padding: 125px 50px 0 50px;
 }
 
 h2,
 h3{
     text-align: center;
+    font-weight: bold;
 }
 
+/* Bottoni */
 .play-button{
     border: 1px solid white;
     border-radius: 10px;
     padding: 0.3rem 1rem;
+    font-weight: bold;
+    text-align: center;
 }
 
 .play-button:hover{
     cursor: pointer;
     background-color: white;
     color: black;
+}
+
+.play-button.active{
+    background-color: white;
+    color: black;
+    border-color: black;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.choice-btn{
+    text-align: center;
+    margin: 0.5rem;
+    text-transform: capitalize;
+}
+
+.d-line{
+    border: 1px solid gray;
+    height: 0px;
+}
+
+/* Media Queries */
+@media (max-width: 767px) {
+    #player-2 {
+        margin: 20px 0;
+    }
 }
