@@ -1,49 +1,50 @@
-//VARIABILI
-//prendo bottoni per giocare nella due diverse modalità
+//VARIABLES
+//playmode buttons
 const playerComBtn = document.getElementById("playerCom");
 const comComBtn = document.getElementById("comCom");
 
-//prendo elemento per mostrare nomi giocatori
+//els where to show players names
 const player1 = document.getElementById("player-1-name");
 const player2 = document.getElementById("player-2-name");
 
-//prendo elementi per mostrare i bottoni delle mosse
+//els where to show players moves
 const playerOneMoves = document.getElementById("player-1-moves");
 const playerTwoMoves = document.getElementById("player-2-moves");
 
-//prendo elemento per mostrare risultato
+//el where to show result
 const resultSection = document.getElementById("resultSection");
 const result = document.getElementById("result");
 
-//variabili dove salvare mosse fatte dai due giocatori
+//variables where to save players choosen moves
 let playerOneMove;
 let playerTwoMove;
 
-//variabile dove salvare modalità scelta
+//var where to store game mode
 let mode;
 
-//variabile flag per gestire se prima partita in modalità vs Computer
+//flag to handle if first time in player vs Computer mode
 let firstPlayerGame = false;
 
-//array di mosse, estendibile
+//DATA
+//array of possible moves
 const moves = ["carta", "forbice", "sasso"];
 
-//mappa combinazioni vincenti
+//winning combination map
 const winningCombinations = {
     "carta": "sasso",
     "forbice": "carta",
     "sasso": "forbice"
 };
 
-//mappa messaggi in base al risultato
+//messages map
 const messages = {
     "draw": "Pareggio",
     "win": "Vittoria! Hai battuto il computer",
     "lose": "Sconfitta! Il computer ti ha battuto"
 };
 
-//EVENTI PRINCIPALI ASCOLTATI
-//ascolto click per modalità giocatore vs computer
+//PRINCIPAL EVENT LISTENERS
+//human vs computer mode listener
 playerComBtn.addEventListener("click", () => {
     mode = "playerCom";
     playerComBtn.classList.add("active");
@@ -51,7 +52,7 @@ playerComBtn.addEventListener("click", () => {
     playGame()
 })
 
-//ascolto click per modalità computer vs computer
+//computer vs computer mode listener
 comComBtn.addEventListener("click", () => {
     mode = "comCom";
     messages['win'] = "Computer 1 vince!";
@@ -61,21 +62,21 @@ comComBtn.addEventListener("click", () => {
     playGame()
 })
 
-//FUNZIONI DI GIOCO
-//raccolgo funzioni necessarie al gioco
+//GAME FUNCTION
+//gather all function to play
 function playGame() {
     showPlayground();
     setPlayerName();
     playersChoices();
 }
 
-//per mostrare il campo da gioco
+//to show playground
 function showPlayground() {
     const playground = document.getElementById("playground");
     playground.className = "text-center mt-4";
     resultSection.classList.add("d-none");
 }
-//per generare nomi dei giocatori in base a modalità
+//to set player names based on chosen mode
 function setPlayerName() {
     if (mode === "playerCom") {
         player1.innerText = "Tu";
@@ -87,7 +88,7 @@ function setPlayerName() {
 
 }
 
-//gestione di intera partita in base a modalità di gioco scelta
+//whole game in base to chosen mode
 function playersChoices() {
     if (mode === "playerCom") {
         playerMovesGen();
@@ -100,7 +101,7 @@ function playersChoices() {
     }
 }
 
-//per generare i bottoni mosse per utente umano
+//to create buttons for human moves
 function playerMovesGen() {
     playerOneMoves.innerHTML = "";
     let btnMoveList = document.createElement("div");
@@ -117,7 +118,7 @@ function playerMovesGen() {
     playerOneMoves.append(btnMoveList);
 }
 
-//gestione partita utente vs computer
+//handle human vs computer
 function handleHumanMove(e) {
     playerTwoMoves.innerHTML = `Sta scegliendo... ⏳`;
     if (firstPlayerGame) {
@@ -137,7 +138,7 @@ function handleHumanMove(e) {
     }, 1000);
 }
 
-//gestione partita computer vs computer
+//handle computer vs computer
 function handleComputerGame() {
     firstPlayerGame = false;
     playerOneMoves.innerHTML = `Sta scegliendo... ⏳`;
@@ -155,7 +156,7 @@ function handleComputerGame() {
     }, 1000);
 }
 
-//mostra sezione e messaggi di vittoria o sconfitta
+//show result section
 function showMoves() {
     const selectedMoves = document.getElementById("selectedMoves");
     selectedMoves.innerText = `${playerOneMove} vs ${playerTwoMove}`;
@@ -169,7 +170,7 @@ function showMoves() {
 
 }
 
-//per dis/abilitare i click sui bottoni (usata durante i timeout)
+//to disable/enable btn clicks (used during timeouts)
 function handleClicks() {
     const clickableItems = document.querySelectorAll(".play-button");
     clickableItems.forEach(button => {
@@ -177,7 +178,7 @@ function handleClicks() {
     });
 }
 
-//autoscroll in fondo alla pagina al risultato
+//autoscroll to bottom when result
 function scrollToBottom() {
     window.scrollTo({
         top: document.body.scrollHeight,
@@ -185,7 +186,7 @@ function scrollToBottom() {
     });
 }
 
-//determina giocatore vincitore in base a mappe di winningCombinations
+//who wins based on winningCombinations
 function winner() {
     resultSection.classList.remove("d-none");
     if (playerOneMove === playerTwoMove) {
